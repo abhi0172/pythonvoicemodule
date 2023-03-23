@@ -1,0 +1,43 @@
+# pip install pyttsx3
+# import os
+# pip install speechrecognition
+# pip install pyaudio
+import speech_recognition as sr
+from os import system as s
+from pyttsx3 import speak as sp
+
+
+sp.speak("The words we want to listen are to be entered here")
+
+a=sr.Recognizer()
+with sr.Microphone() as src:
+    print("Microphone activating......")
+    audio=a.listen(src)
+    query=a.recognize_google(audio,language="en-in")
+    query=query.lower()
+    print(f"User Said: {query}")
+    
+a=sr.Recognizer()
+
+while True:
+    with sr.Microphone() as src:
+        sp("Microphone activating")
+        audio=a.listen(src)
+        query=a.recognize_google(audio,language="en-in")
+        query=query.lower()
+        print(f"User Said: {query}")
+
+
+        if "notepad" in query and "open"  in query:
+            sp("Opening Notepad......")
+            s("notepad")
+        elif "paint"  in query and "open" in query:
+            sp("Opening Ms paint")
+            s("mspaint")
+        elif "drive"  in query and "open"  in query:
+            s("start chrome drive.google.com")
+        elif ("exit" in query) or ("quit" in query) or ("close"  in query) or ("stop" in query):
+            sp("Bye everyone see you next time")
+            break
+        else:
+            sp("I don't understand")
